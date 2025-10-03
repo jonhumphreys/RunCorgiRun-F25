@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class KeyboardInput : MonoBehaviour
 {
+    // we need access to this to move the corgi
     public Corgi Corgi;
+    
+    // we need access to this to place poop
+    public PoopPlacer PoopPlacer;
     
     void Update()
     {
@@ -33,6 +37,12 @@ public class KeyboardInput : MonoBehaviour
         {
             Corgi.Move(new Vector2(1, 0));
         }
-        
+
+        // if we pressed space, tell PoopPlacer to place some poop where
+        // the Corgi is currently at
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PoopPlacer.Place(Corgi.transform.position);
+        }
     }
 }

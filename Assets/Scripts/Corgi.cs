@@ -19,6 +19,9 @@ public class Corgi : MonoBehaviour
         // Translate() moves the sprite by xAmount and yAmount
         // we don't want to move the sprite on the z axis so we set it to 0
         CorgiSpriteRenderer.transform.Translate(xAmount, yAmount, 0f);
+
+        CorgiSpriteRenderer.transform.position = 
+            SpriteTools.ConstrainToScreen(CorgiSpriteRenderer);
     }
     
     private void FaceCorrectDirection(Vector2 direction)
