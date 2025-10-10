@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class Poop : TimedObject
+public class Beer : TimedObject
 {
 
     public void Start()
     {
-        secondsOnScreen = GameParameters.PoopSecondsOnScreen;
+        secondsOnScreen = GameParameters.BeerSecondsOnScreen;
         base.Start();
     }
 }

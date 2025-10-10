@@ -524,6 +524,7 @@ GameObject:
   - component: {fileID: 984479448}
   - component: {fileID: 984479447}
   - component: {fileID: 984479449}
+  - component: {fileID: 984479450}
   m_Layer: 0
   m_Name: Placers
   m_TagString: Untagged
@@ -571,7 +572,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad0cf6641d12ed408bf3dc78f82b73a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BeerPrefab: {fileID: 9032249885837869903, guid: 7c09adedcb33ae143a62e2dae8d7befa, type: 3}
+  Prefab: {fileID: 1234173728185594835, guid: 58dc83680ffcae04e82e50b2d757298d, type: 3}
+  minimumSecondsToWait: 1
+  maximumSecondsToWait: 3
+--- !u!114 &984479450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984479446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38b0303f34ab04449eb6e0959ed2402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 368211838421807148, guid: 3e27578764a63b148a66d0c4a281c620, type: 3}
+  minimumSecondsToWait: 1
+  maximumSecondsToWait: 3
 --- !u!1 &1809270319
 GameObject:
   m_ObjectHideFlags: 0

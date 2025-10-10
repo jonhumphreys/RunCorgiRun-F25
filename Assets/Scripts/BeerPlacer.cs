@@ -1,19 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
-public class BeerPlacer : MonoBehaviour
+public class BeerPlacer : TimedObjectPlacer
 {
-    public GameObject BeerPrefab;
-    
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        // place a beer somewhere randomly on screen
-        PlaceNewBeer();
-    }
-
-    private void PlaceNewBeer()
-    {
-        Instantiate(BeerPrefab, 
-            SpriteTools.RandomLocationWorldSpace(), Quaternion.identity);
+        minimumSecondsToWait = GameParameters.BeerMinimumSecondsToWait;
+        maximumSecondsToWait = GameParameters.BeerMaximumSecondsToWait;
     }
 }
