@@ -1,9 +1,19 @@
+using System;
 using UnityEngine;
 
 public class Corgi : MonoBehaviour
 {
     public SpriteRenderer CorgiSpriteRenderer;
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        // if collided with beer
+            // do the drunk
+        // if collided with bone
+            // give me points
+    }
     
+
     public void Move(Vector2 direction)
     {
         FaceCorrectDirection(direction);
