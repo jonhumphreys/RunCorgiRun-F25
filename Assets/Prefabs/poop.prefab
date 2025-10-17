@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6851983605986412722}
   m_Layer: 0
   m_Name: poop
-  m_TagString: Untagged
+  m_TagString: Poop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,3 +100,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5277c97eeb4bb84ca26e5dab63fa357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondsOnScreen: 1

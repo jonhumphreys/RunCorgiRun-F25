@@ -2,6 +2,8 @@ using UnityEngine;
 
 public static class GameParameters
 {
+    public static float CorgiDrunkSeconds = 5f;
+    
     public static float PoopSecondsOnScreen = 5f;
 
     public static float BeerMinimumSecondsToWait = 0.5f;

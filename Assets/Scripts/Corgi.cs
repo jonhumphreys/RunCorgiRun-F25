@@ -1,21 +1,61 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Corgi : MonoBehaviour
 {
     public SpriteRenderer CorgiSpriteRenderer;
-
+    public Sprite DrunkSprite;
+    public Sprite SoberSprite;
+    
+    private bool isDrunk = false;
+    
     public void OnTriggerEnter2D(Collider2D other)
     {
-        // if collided with beer
-            // do the drunk
-        // if collided with bone
-            // give me points
+        if (other.gameObject.tag == "Beer")
+        {
+            GetDrunk();
+        }
+    }
+
+    private void GetDrunk()
+    {
+        isDrunk = true;
+        ChangeToDrunkSprite();
+        StartSoberingUp();
+    }
+
+    private void ChangeToDrunkSprite()
+    {
+        CorgiSpriteRenderer.sprite = DrunkSprite;
+    }
+
+    private void StartSoberingUp()
+    {
+        StartCoroutine(CountdownUntilSober());
+    }
+
+    IEnumerator CountdownUntilSober()
+    {
+        yield return new WaitForSeconds(GameParameters.CorgiDrunkSeconds);
+        SoberUp();
+    }
+
+    private void SoberUp()
+    {
+        isDrunk = false;
+        ChangeToSoberSprite();
+    }
+
+    private void ChangeToSoberSprite()
+    {
+        CorgiSpriteRenderer.sprite = SoberSprite;
     }
     
-
     public void Move(Vector2 direction)
     {
+        direction = ApplyDrunkenness(direction);
+        
         FaceCorrectDirection(direction);
         
         // set the amount to move in x (left/right) and y (up/down)
@@ -33,7 +73,18 @@ public class Corgi : MonoBehaviour
         CorgiSpriteRenderer.transform.position = 
             SpriteTools.ConstrainToScreen(CorgiSpriteRenderer);
     }
-    
+
+    private Vector2 ApplyDrunkenness(Vector2 direction)
+    {
+        if (isDrunk)
+        {
+            direction.x = direction.x * -1;
+            direction.y = direction.y * -1;
+        }
+        
+        return direction;
+    }
+
     private void FaceCorrectDirection(Vector2 direction)
     {
         // if the direction x is positive (moving right), don't flip the sprite
