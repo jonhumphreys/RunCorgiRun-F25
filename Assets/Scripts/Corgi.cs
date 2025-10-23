@@ -7,8 +7,21 @@ public class Corgi : MonoBehaviour
     public SpriteRenderer CorgiSpriteRenderer;
     public Sprite DrunkSprite;
     public Sprite SoberSprite;
-    
+    public UI UI;
+
     private bool isDrunk = false;
+    private bool isPlastered = false;
+
+    private int randomMoveCounter = 0;
+    private int lastRandomDirection = 0;
+    
+    public void Update()
+    {
+        if (isPlastered)
+        {
+            MoveRandomly();
+        }
+    }
     
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,13 +29,48 @@ public class Corgi : MonoBehaviour
         {
             GetDrunk();
         }
+        
+        if (other.gameObject.tag == "Pill")
+        {
+            SoberUp();
+        }
+        
+        if (other.gameObject.tag == "Bone")
+        {
+            ScoreKeeper.AddPoint();
+            UI.SetScoreText(ScoreKeeper.GetScore());
+        }
+        
+        Destroy(other.gameObject);
+    }
+
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Moonshine")
+        {
+            GetPlastered();
+        }
+    }
+
+    private void GetPlastered()
+    {
+        isPlastered = true;
+        Inebriate();
+    }
+
+    private void Inebriate()
+    {
+        ChangeToDrunkSprite();
+        StartSoberingUp();
     }
 
     private void GetDrunk()
     {
+        if (isPlastered)
+            return;
+        
         isDrunk = true;
-        ChangeToDrunkSprite();
-        StartSoberingUp();
+        Inebriate();
     }
 
     private void ChangeToDrunkSprite()
@@ -44,6 +92,7 @@ public class Corgi : MonoBehaviour
     private void SoberUp()
     {
         isDrunk = false;
+        isPlastered = false;
         ChangeToSoberSprite();
     }
 
@@ -51,7 +100,37 @@ public class Corgi : MonoBehaviour
     {
         CorgiSpriteRenderer.sprite = SoberSprite;
     }
-    
+
+    private void MoveRandomly()
+    {
+        int direction = lastRandomDirection;
+
+        if (randomMoveCounter == 0)
+        {
+            direction = UnityEngine.Random.Range(0, 4);
+            randomMoveCounter = UnityEngine.Random.Range(20, 40);
+            lastRandomDirection = direction;
+        }
+        
+        switch (direction)
+        {
+            case 0:
+                Move(new Vector2(1, 0));
+                break;
+            case 1:
+                Move(new Vector2(-1, 0));
+                break;
+            case 2:
+                Move(new Vector2(0, 1));
+                break;
+            case 3:
+                Move(new Vector2(0, -1));
+                break;
+        }
+        
+        randomMoveCounter--;
+    }
+
     public void Move(Vector2 direction)
     {
         direction = ApplyDrunkenness(direction);

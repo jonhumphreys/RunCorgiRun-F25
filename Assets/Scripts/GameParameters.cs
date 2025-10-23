@@ -15,9 +15,13 @@ public static class GameParameters
     public static float PillMinimumSecondsToWait = 2f;
     public static float PillMaximumSecondsToWait = 4f;
     
+    public static float MoonshineMinimumSecondsToWait = 0.5f;
+    public static float MoonshineMaximumSecondsToWait = 1f;
+    
     public static float BeerSecondsOnScreen = 7f;
     public static float BoneSecondsOnScreen = 2f;
     public static float PillSecondsOnScreen = 3f;
+    public static float MoonshineSecondsOnScreen = 5f;
     
     public static float CakeMinimumSecondsToWait = 2f;
     public static float CakeMaximumSecondsToWait = 4f;
