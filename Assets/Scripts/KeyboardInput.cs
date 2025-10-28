@@ -17,25 +17,25 @@ public class KeyboardInput : MonoBehaviour
         // if we pressed W, move positive y (up)
         if (Input.GetKey(KeyCode.W))
         {
-            Corgi.Move(new Vector2(0, 1));
+            Corgi.MoveManually(new Vector2(0, 1));
         }
         
         // if we pressed S, move negative y (down)
         if (Input.GetKey(KeyCode.S))
         {
-            Corgi.Move(new Vector2(0, -1));
+            Corgi.MoveManually(new Vector2(0, -1));
         }
         
         // if we pressed A, move negative x (left)
         if (Input.GetKey(KeyCode.A))
         {
-            Corgi.Move(new Vector2(-1, 0));
+            Corgi.MoveManually(new Vector2(-1, 0));
         }
         
         // if we pressed D, move positive x (right)
         if (Input.GetKey(KeyCode.D))
         {
-            Corgi.Move(new Vector2(1, 0));
+            Corgi.MoveManually(new Vector2(1, 0));
         }
 
         // if we pressed space, tell PoopPlacer to place some poop where

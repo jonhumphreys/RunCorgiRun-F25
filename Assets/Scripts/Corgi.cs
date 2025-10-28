@@ -131,6 +131,14 @@ public class Corgi : MonoBehaviour
         randomMoveCounter--;
     }
 
+    public void MoveManually(Vector2 direction)
+    {
+        if (isPlastered)
+            return;
+        
+        Move(direction);
+    }
+
     public void Move(Vector2 direction)
     {
         direction = ApplyDrunkenness(direction);
