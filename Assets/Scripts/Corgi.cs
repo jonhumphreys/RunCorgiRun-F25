@@ -8,6 +8,7 @@ public class Corgi : MonoBehaviour
     public Sprite DrunkSprite;
     public Sprite SoberSprite;
     public UI UI;
+    public Game Game;
 
     private bool isDrunk = false;
     private bool isPlastered = false;
@@ -133,6 +134,9 @@ public class Corgi : MonoBehaviour
 
     public void MoveManually(Vector2 direction)
     {
+        if (!Game.IsPlaying)
+            return;
+        
         if (isPlastered)
             return;
         
@@ -184,5 +188,15 @@ public class Corgi : MonoBehaviour
         {
             CorgiSpriteRenderer.flipX = true;
         }
+    }
+
+    public void Reset()
+    {
+        CorgiSpriteRenderer.transform.position =
+            new Vector3(0, 0, 0);
+        CorgiSpriteRenderer.flipX = false;
+        CorgiSpriteRenderer.sprite = SoberSprite;
+        isDrunk = false;
+        isPlastered = false;
     }
 }

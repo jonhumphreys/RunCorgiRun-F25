@@ -572,6 +572,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game
   UI: {fileID: 681676634}
   GameTimer: {fileID: 793291839}
+  BeerPlacer: {fileID: 984479449}
+  BonePlacer: {fileID: 984479450}
+  PillPlacer: {fileID: 984479451}
+  MoonshinePlacer: {fileID: 984479453}
+  PoopPlacer: {fileID: 984479447}
+  Corgi: {fileID: 1809270320}
+  IsPlaying: 0
 --- !u!4 &427346846
 Transform:
   m_ObjectHideFlags: 0
@@ -1141,6 +1148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa5ceec3d57a1b4389622fc67394c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Game: {fileID: 427346845}
   PoopPrefab: {fileID: 9032249885837869903, guid: 7c09adedcb33ae143a62e2dae8d7befa, type: 3}
 --- !u!4 &984479448
 Transform:
@@ -1506,7 +1514,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1694334815}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 427346845}
+        m_TargetAssemblyTypeName: Game, Assembly-CSharp
+        m_MethodName: OnPlayAgainButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1694334815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1581,6 +1601,7 @@ MonoBehaviour:
   DrunkSprite: {fileID: 21300000, guid: 5a207616100a4e540908e9239c95a208, type: 3}
   SoberSprite: {fileID: 21300000, guid: 3f2821119e2f0ac47aa39a55a3418d6f, type: 3}
   UI: {fileID: 681676634}
+  Game: {fileID: 427346845}
 --- !u!212 &1809270321
 SpriteRenderer:
   m_ObjectHideFlags: 0

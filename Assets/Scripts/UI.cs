@@ -35,4 +35,9 @@ public class UI : MonoBehaviour
         CanvasGroupDisplayer.Show(GameOverScreenCanvasGroup);
         CanvasGroupDisplayer.Hide(StartScreenCanvasGroup);
     }
+
+    public void HideGameOverScreen()
+    {
+        CanvasGroupDisplayer.Hide(GameOverScreenCanvasGroup);
+    }
 }
