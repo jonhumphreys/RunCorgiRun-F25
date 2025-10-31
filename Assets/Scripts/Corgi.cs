@@ -16,6 +16,8 @@ public class Corgi : MonoBehaviour
     private int randomMoveCounter = 0;
     private int lastRandomDirection = 0;
     
+    private Coroutine soberUpCoroutine;
+    
     public void Update()
     {
         if (isPlastered)
@@ -29,27 +31,26 @@ public class Corgi : MonoBehaviour
         if (other.gameObject.tag == "Beer")
         {
             GetDrunk();
+            Destroy(other.gameObject);
         }
         
         if (other.gameObject.tag == "Pill")
         {
             SoberUp();
+            Destroy(other.gameObject);
         }
         
         if (other.gameObject.tag == "Bone")
         {
             ScoreKeeper.AddPoint();
-            UI.SetScoreText(ScoreKeeper.GetScore());
+            UI.SetScoreText(ScoreKeeper.GetScore());        
+            Destroy(other.gameObject);
         }
         
-        Destroy(other.gameObject);
-    }
-
-    public void OnCollisionEnter2D(Collision2D other)
-    {
         if (other.gameObject.tag == "Moonshine")
         {
             GetPlastered();
+            Destroy(other.gameObject);
         }
     }
 
@@ -81,7 +82,9 @@ public class Corgi : MonoBehaviour
 
     private void StartSoberingUp()
     {
-        StartCoroutine(CountdownUntilSober());
+        if (soberUpCoroutine != null)
+            StopCoroutine(soberUpCoroutine);
+        soberUpCoroutine = StartCoroutine(CountdownUntilSober());
     }
 
     IEnumerator CountdownUntilSober()
@@ -154,8 +157,10 @@ public class Corgi : MonoBehaviour
         // direction.y will be positive 1 or -1
         // Time.deltaTime is the time since the last frame and makes 
         // the movement be the same amount no matter your monitor refresh rate
-        float xAmount = direction.x * 5f * Time.deltaTime;
-        float yAmount = direction.y * 5f * Time.deltaTime;
+        float xAmount = direction.x * GameParameters.CorgiMoveSpeed
+                                    * Time.deltaTime;
+        float yAmount = direction.y * GameParameters.CorgiMoveSpeed
+                                    * Time.deltaTime;
         
         // Translate() moves the sprite by xAmount and yAmount
         // we don't want to move the sprite on the z axis so we set it to 0

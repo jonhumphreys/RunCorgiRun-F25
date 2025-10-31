@@ -31,7 +31,8 @@ public class Game : MonoBehaviour
 
     private void InitializeGame()
     {
-        GameTimer.StartTimer(10, OnTimerFinished);
+        GameTimer.StartTimer(GameParameters.GameDurationInSeconds,
+            OnTimerFinished);
         StartPlacers();
         IsPlaying = true;
         ScoreKeeper.ResetScore();
